@@ -1,0 +1,18 @@
+---
+# defaults file for octopi
+manifest_folder: '/home/{{ ansible_user }}/manifests'
+octopi_namespace: octopi
+
+manifests : [{
+  src: octopi_deployment.j2.yaml,
+  dest: octopi_deployment.yaml
+},{
+  src: octopi_service.j2.yaml,
+  dest: octopi_service.yaml
+},{
+  src: octopi_ingress.j2.yaml,
+  dest: octopi_ingress.yaml
+},{
+  src: octopi_pvc.j2.yaml,
+  dest: octopi_pvc.yaml
+}]

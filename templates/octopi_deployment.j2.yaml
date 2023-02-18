@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: octopi
+  labels:
+    app: octopi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: octopi
+  template:
+    metadata:
+      labels:
+        app: octopi
+    spec:
+      containers:
+      - name: octopi
+        image: octoprint/octoprint
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: octopi
+          mountPath: /octoprint
+      nodeName: {{octoprint_node}}
+      volumes:
+        - name: octopi
+          persistentVolumeClaim:
+            claimName: octopi-claim
+
